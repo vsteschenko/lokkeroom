@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const CreateLobbyInChat = ({onCreateLobby}) => {
+const CreateLobbyInChat = ({onCreateLobby, isLobbyVisible, setIsLobbyVisible}) => {
     const token = localStorage.getItem('token');
     const handleClick = async(event) => {
         event.preventDefault();

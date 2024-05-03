@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateLobbyInChat from './CreateLobbyInChat';
 
-const RenderLobbies = () => {
+const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     const token = localStorage.getItem('token');
     const emailAddress = localStorage.getItem('email');
     const [lobby, setLobby] = useState([]);
-
     const [currentLobby, setCurrentLobby] = useState(null);
 
     useEffect(() => {
@@ -78,10 +77,10 @@ const handleCreateLobby = (newLobby) => {
             <div className="DivLobbiesAndCreateLobby">
                 <div className="Lobbies">
                     {lobby.map((lobb, index) => {
-                        return <div key={index} className="Lobby" onClick={() => handleClick(lobb)}>{lobb}</div>
+                        return <div key={index} className={`Lobby ${isLobbyVisible ? '' : 'hidden'}`} onClick={() => handleClick(lobb)}>{lobb}</div>
                     })}
                 </div>
-                <CreateLobbyInChat onCreateLobby={handleCreateLobby}/>
+                <CreateLobbyInChat onCreateLobby={handleCreateLobby} />
             </div>
             <div className="DivMessagesAndInput">
                 <div className="Messages">

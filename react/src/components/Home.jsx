@@ -5,11 +5,12 @@ import Nav from './Nav';
 
 const Home = () => {
     const token = localStorage.getItem('token');
+    const [isLobbyVisible, setIsLobbyVisible] = useState(true);
     return (
         <>
-            <Nav />
+            <Nav isLobbyVisible={isLobbyVisible} setIsLobbyVisible={setIsLobbyVisible} />
             <div className="Container">
-                <RenderLobbies />
+                <RenderLobbies isLobbyVisible={isLobbyVisible} setIsLobbyVisible={setIsLobbyVisible} />
             </div>
         </>
     )
