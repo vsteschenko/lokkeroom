@@ -11,9 +11,7 @@ const CreateLobbyInChat = ({onCreateLobby, isLobbyVisible, setIsLobbyVisible}) =
             }
         })
         .then((response) => {
-            console.log(response.data);
             onCreateLobby(response.data.lobby);
-            console.log(response.data.lobbyId);
         })
         .catch((error) => {
             if (error.response && error.response.status === 403) {

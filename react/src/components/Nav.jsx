@@ -1,11 +1,10 @@
 import React from 'react';
 import DirectMessage from './DirectMessage';
 
-const Nav = ({isLobbyVisible, setIsLobbyVisible}) => {
+const Nav = () => {
     return <div className="Nav">
                 <div className="SlideMenu">
-                    <DirectMessage isLobbyVisible={isLobbyVisible} setIsLobbyVisible={setIsLobbyVisible}/>
-                    <div>messages</div>
+                    <DirectMessage />
                 </div>
             </div>
 };
