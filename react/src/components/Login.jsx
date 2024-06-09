@@ -12,7 +12,7 @@ const Login = () => {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        axios.post('https://millenium-falcon-339046ec552e.herokuapp.com/login', {
+        axios.post('https://millenium-falcon-e8394498af5e.herokuapp.com/login', {
             email: email,
             password: password
         })

@@ -7,7 +7,7 @@ const CreateLobby = () => {
     // console.log(token);
     const handleSubmit = async(event) => {
         event.preventDefault();
-        axios.post('https://millenium-falcon-339046ec552e.herokuapp.com/createlobby', {}, {
+        axios.post('https://millenium-falcon-e8394498af5e.herokuapp.com/createlobby', {}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

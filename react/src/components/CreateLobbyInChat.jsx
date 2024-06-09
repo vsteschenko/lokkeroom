@@ -5,7 +5,7 @@ const CreateLobbyInChat = ({onCreateLobby, isLobbyVisible, setIsLobbyVisible}) =
     const token = localStorage.getItem('token');
     const handleClick = async(event) => {
         event.preventDefault();
-        axios.post('https://millenium-falcon-339046ec552e.herokuapp.com/createNewLobbyAndPostMessage', {}, {
+        axios.post('https://millenium-falcon-e8394498af5e.herokuapp.com/createNewLobbyAndPostMessage', {}, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

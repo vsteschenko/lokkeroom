@@ -20,7 +20,7 @@ const DirectMessage = () => {
             console.log(`Lobby visible: ${isLobbyVisible}`);
             console.log(`messages visible: ${isDmVisible}`);
         }
-        axios.get('https://millenium-falcon-339046ec552e.herokuapp.com/mymessages', {
+        axios.get('https://millenium-falcon-e8394498af5e.herokuapp.com/mymessages', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
