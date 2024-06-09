@@ -138,7 +138,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
                     {isLobbyVisible ?
                         !messages ? <div>write a message</div> : messages.reverse().map((message, index) => {
                             return emailAddress === message.email ? <div key={index} className="MyMessage">{message.email}<br></br> {message.text} </div> : <div key={index} className="OtherMessages">{message.email} <br></br>{message.text}</div>
-                        }) : privateMessage.reverse().map((message, index) => {
+                        }) : privateMessage.map((message, index) => {
                             return currentDm === message.email ? <div key={index} className="OtherMessages">{message.email}<br></br>{message.text}</div> : <div key={index} className="MyMessage">{message.email} <br></br> {message.text}</div>
                         })}
                 </div>
