@@ -29,6 +29,7 @@
     background-color: #0071e3;
     color: white;
     display: flex;
+    justify-content: space-between;
 }
 .Nav div {
     margin: 2.5px;
@@ -73,10 +74,20 @@
 .Messages div {
     margin: 20px;
     height: 50px;
+    padding: 10px;
+    border-radius: 10px;
 }
 .MyMessage {
     display: flex;
     justify-content: flex-end;
+    border: 1px solid rgb(152, 234, 152);
+    background-color: rgb(152, 234, 152);
+    align-self: flex-end;
+}
+.OtherMessages {
+    align-self: flex-start;
+    border: 1px solid rgb(152, 234, 152);
+    background-color: rgb(152, 234, 152);
 }
 .Input {
     width: 100%;
@@ -94,9 +105,6 @@
     background-color: #0071e3;
     color: white;
     border-radius: 10px;
-}
-.Channels {
-
 }
 .NotActive {
     color: red;

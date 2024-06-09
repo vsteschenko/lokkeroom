@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useContext } from 'react';
 import MyContext from '../MyContext';
 import axios from 'axios';
@@ -11,6 +11,8 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     const [currentLobby, setCurrentLobby] = useState(null);
     const { dm, setDm } = useContext(MyContext);
     const [currentDm, setCurrentDm] = useState(null);
+    const messagesEndRef = useRef(null);
+
     useEffect(() => {
         axios.get('https://millenium-falcon-e8394498af5e.herokuapp.com/mylobbies', {
             headers: {
@@ -47,39 +49,19 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
             handleSubmit(event)
         }
     };
-    // const handleSubmit = async(event) => {
-    //     event.preventDefault();
-    //     try {
-    //         const response = await axios.post(
-    //             `https://millenium-falcon-e8394498af5e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
-    //             { text: text },
-    //             {
-    //                 headers: {
-    //                     Authorization: `Bearer ${token}`
-    //                 }
-    //             }
-    //         );
-    //         console.log(response.data);
-    //         setMessages([...messages, response.data]);
-    //         handleClick(currentLobby);
-    //         setText('');
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    
     const handleSubmit = async(event) => {
         event.preventDefault();
-        // console.log(isLobbyVisible);
         if(isLobbyVisible) {
             try {
                 const response = await axios.post(`https://millenium-falcon-e8394498af5e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
                     { text: text },
                     { headers: { Authorization: `Bearer ${token}`} }
                 );
-                //console.log(response.data);
                 setMessages([...messages, response.data]);
                 handleClick(currentLobby);
                 setText('');
+                messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
             } catch (error) {
                 console.error(error);
             }
@@ -88,9 +70,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
                 const response = await axios.post(`https://millenium-falcon-e8394498af5e.herokuapp.com/directMessage`,
                     { text: text, userEmail: currentDm },
                     { headers: { Authorization: `Bearer ${token}` } })
-                // console.log(response.data);
                 setPrivateMessages([...privateMessage, response.data]);
-                // console.log(privateMessage);
                 setText('')
             } catch (error) {
                 console.error(error);
@@ -116,7 +96,6 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
         })
     };
 
-
     return (
         <>  
             <div className="DivLobbiesAndCreateLobby">
@@ -136,11 +115,12 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
             <div className="DivMessagesAndInput">
                 <div className="Messages">
                     {isLobbyVisible ?
-                        !messages ? <div>write a message</div> : messages.reverse().map((message, index) => {
-                            return emailAddress === message.email ? <div key={index} className="MyMessage">{message.email}<br></br> {message.text} </div> : <div key={index} className="OtherMessages">{message.email} <br></br>{message.text}</div>
+                        !messages ? <div>write a message</div> : messages.map((message, index) => {
+                            return emailAddress === message.email ? <div key={index} className="MyMessage"> {message.text} </div> : <div key={index} className="OtherMessages"><br></br>{message.text}</div>
                         }) : privateMessage.map((message, index) => {
-                            return currentDm === message.email ? <div key={index} className="OtherMessages">{message.email}<br></br>{message.text}</div> : <div key={index} className="MyMessage">{message.email} <br></br> {message.text}</div>
+                            return currentDm === message.email ? <div key={index} className="OtherMessages">{message.text}</div> : <div key={index} className="MyMessage"><br></br> {message.text}</div>
                         })}
+                    {/* <div ref={messagesEndRef} /> */}
                 </div>
                 <form className="InputDiv" onSubmit={handleSubmit}>
                     <input className="Input" type="text" placeholder="write a message..." value={text} onChange={(event) => setText(event.target.value)} onKeyDown={handleKeyDown}></input>

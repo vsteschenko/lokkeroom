@@ -12,13 +12,9 @@ const DirectMessage = () => {
         if(isLobbyVisible) {
             setIsLobbyVisible(false);
             setIsDmVisible(true);
-            console.log(`Lobby visible: ${isLobbyVisible}`);
-            console.log(`messages visible: ${isDmVisible}`);
         } else {
             setIsLobbyVisible(true);
             setIsDmVisible(false);
-            console.log(`Lobby visible: ${isLobbyVisible}`);
-            console.log(`messages visible: ${isDmVisible}`);
         }
         axios.get('https://millenium-falcon-e8394498af5e.herokuapp.com/mymessages', {
             headers: {
@@ -27,7 +23,6 @@ const DirectMessage = () => {
         })
         .then((response) => {
             setDm(response.data);
-            console.log(response.data);
         })
         .catch((error) => {
             console.log(error)
@@ -35,7 +30,7 @@ const DirectMessage = () => {
     };
 
     return (
-        <>
+        <>  
             <div className="Channels">channels</div>
             <div className={`Channels ${isLobbyVisible ? "" : "NotActive"}`} onClick={handleClick}>private messages</div>
         </>)
