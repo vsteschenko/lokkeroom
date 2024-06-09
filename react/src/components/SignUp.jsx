@@ -10,7 +10,7 @@ const SignUp = () => {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        axios.post('https://millenium-falcon-339046ec552e.herokuapp.com/register', {
+        axios.post('https://millenium-falcon-e8394498af5e.herokuapp.com/register', {
             email: email,
             password: password,
             role: isAdmin ? 'admin' : 'user'

@@ -12,7 +12,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     const { dm, setDm } = useContext(MyContext);
     const [currentDm, setCurrentDm] = useState(null);
     useEffect(() => {
-        axios.get('https://millenium-falcon-339046ec552e.herokuapp.com/mylobbies', {
+        axios.get('https://millenium-falcon-e8394498af5e.herokuapp.com/mylobbies', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -27,7 +27,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     const [messages,setMessages] = useState([]);
     const handleClick = (lobby) => {
         setCurrentLobby(lobby);
-        axios.get(`https://millenium-falcon-339046ec552e.herokuapp.com/lobby/${lobby}/messages`, {
+        axios.get(`https://millenium-falcon-e8394498af5e.herokuapp.com/lobby/${lobby}/messages`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -51,7 +51,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     //     event.preventDefault();
     //     try {
     //         const response = await axios.post(
-    //             `https://millenium-falcon-339046ec552e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
+    //             `https://millenium-falcon-e8394498af5e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
     //             { text: text },
     //             {
     //                 headers: {
@@ -72,7 +72,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
         console.log(isLobbyVisible);
         if(isLobbyVisible) {
             try {
-                const response = await axios.post(`https://millenium-falcon-339046ec552e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
+                const response = await axios.post(`https://millenium-falcon-e8394498af5e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
                     { text: text },
                     { headers: { Authorization: `Bearer ${token}`} }
                 );
@@ -85,7 +85,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
             }
         } else {
             try {
-                const response = await axios.post(`https://millenium-falcon-339046ec552e.herokuapp.com/directMessage`,
+                const response = await axios.post(`https://millenium-falcon-e8394498af5e.herokuapp.com/directMessage`,
                     { text: text, userEmail: currentDm },
                     { headers: { Authorization: `Bearer ${token}` } })
                 // console.log(response.data);
@@ -105,7 +105,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     const handleClickDm = async(email) => {
         console.log(email);
         setCurrentDm(email);
-        await axios.get(`https://millenium-falcon-339046ec552e.herokuapp.com/getMessagesWithUser?email=${email}`,
+        await axios.get(`https://millenium-falcon-e8394498af5e.herokuapp.com/getMessagesWithUser?email=${email}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

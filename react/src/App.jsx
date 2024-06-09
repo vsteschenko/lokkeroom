@@ -4,7 +4,7 @@ import './App.css'
 function App() {
   const [info, setInfo] = useState('Hello Caladan!')
   const fetchInfo = url => {
-    fetch('http://millenium-falcon-339046ec552e.herokuapp.com/info')
+    fetch('https://millenium-falcon-e8394498af5e.herokuapp.com/info')
       .then((response) => response.json())
       .then((data) => {
         setInfo(data)
