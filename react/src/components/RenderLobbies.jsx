@@ -69,7 +69,7 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
     // };
     const handleSubmit = async(event) => {
         event.preventDefault();
-        console.log(isLobbyVisible);
+        // console.log(isLobbyVisible);
         if(isLobbyVisible) {
             try {
                 const response = await axios.post(`https://millenium-falcon-e8394498af5e.herokuapp.com/lobby/${currentLobby}/writeMessage`,
@@ -136,9 +136,9 @@ const RenderLobbies = ({isLobbyVisible, setIsLobbyVisible}) => {
             <div className="DivMessagesAndInput">
                 <div className="Messages">
                     {isLobbyVisible ?
-                        !messages ? <div>write a message</div> : messages.map((message, index) => {
+                        !messages ? <div>write a message</div> : messages.reverse().map((message, index) => {
                             return emailAddress === message.email ? <div key={index} className="MyMessage">{message.email}<br></br> {message.text} </div> : <div key={index} className="OtherMessages">{message.email} <br></br>{message.text}</div>
-                        }) : privateMessage.map((message, index) => {
+                        }) : privateMessage.reverse().map((message, index) => {
                             return currentDm === message.email ? <div key={index} className="OtherMessages">{message.email}<br></br>{message.text}</div> : <div key={index} className="MyMessage">{message.email} <br></br> {message.text}</div>
                         })}
                 </div>
